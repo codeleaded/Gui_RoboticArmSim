@@ -3,48 +3,47 @@
 
 #include "/home/codeleaded/System/Static/Library/Lib3D_Mathlib.h"
 #include "/home/codeleaded/System/Static/Library/Lib3D_Mesh.h"
-
-#include "Bone.h"
+#include "/home/codeleaded/System/Static/Library/Lib3D_Bone.h"
 
 typedef struct RoboticArm{
     Bone b;
-    vec3d p;
+    Vec3D p;
 } RoboticArm;
 
-RoboticArm RoboticArm_New(vec3d p,float r){
+RoboticArm RoboticArm_New(Vec3D p,float r){
 	Vector tris1 = Lib3D_Cube_Make(
-        (vec3d){ -0.5f,0.0f,-0.5f,1.0f },
-        (vec3d){ 1.0f,0.5f,1.0f,1.0f },
+        (Vec3D){ -0.5f,0.0f,-0.5f,1.0f },
+        (Vec3D){ 1.0f,0.5f,1.0f,1.0f },
         0xFFFFFFFFU,
         0xFFFFFFFFU
     );
     Vector tris2 = Lib3D_Cube_Make(
-        (vec3d){-0.25f,0.0f,-0.25f,1.0f },
-        (vec3d){ 0.5f,2.5f,0.5f,1.0f },
+        (Vec3D){-0.25f,0.0f,-0.25f,1.0f },
+        (Vec3D){ 0.5f,2.5f,0.5f,1.0f },
         0xFFFFFFFFU,
         0xFFFFFFFFU
     );
     Vector tris3 = Lib3D_Cube_Make(
-        (vec3d){-0.25f,0.0f,-0.25f,1.0f },
-        (vec3d){ 0.5f,0.5f,2.5f,1.0f },
+        (Vec3D){-0.25f,0.0f,-0.25f,1.0f },
+        (Vec3D){ 0.5f,0.5f,2.5f,1.0f },
         0xFFFFFFFFU,
         0xFFFFFFFFU
     );
     Vector tris4 = Lib3D_Cube_Make(
-        (vec3d){-0.5f,-0.25f,0.0f,1.0f },
-        (vec3d){ 1.0f,0.5f,0.5f,1.0f },
+        (Vec3D){-0.5f,-0.25f,0.0f,1.0f },
+        (Vec3D){ 1.0f,0.5f,0.5f,1.0f },
         0xFFFFFFFFU,
         0xFFFFFFFFU
     );
     Vector tris5 = Lib3D_Cube_Make(
-        (vec3d){ 0.0f,0.0f,0.0f,1.0f },
-        (vec3d){ 0.5f,0.25f,1.0f,1.0f },
+        (Vec3D){ 0.0f,0.0f,0.0f,1.0f },
+        (Vec3D){ 0.5f,0.25f,1.0f,1.0f },
         0xFFFFFFFFU,
         0xFFFFFFFFU
     );
     Vector tris6 = Lib3D_Cube_Make(
-        (vec3d){ -0.5f,0.0f,0.0f,1.0f },
-        (vec3d){ 0.5f,0.25f,1.0f,1.0f },
+        (Vec3D){ -0.5f,0.0f,0.0f,1.0f },
+        (Vec3D){ 0.5f,0.25f,1.0f,1.0f },
         0xFFFFFFFFU,
         0xFFFFFFFFU
     );
@@ -52,29 +51,29 @@ RoboticArm RoboticArm_New(vec3d p,float r){
 	RoboticArm s;
     s.p = p;
     s.b = Bone_MakeXX(
-		(vec3d){ 0.0f,0.0f,0.0f,1.0f },
-		GJoint_Make(vec3d_Null(),vec3d_New(0.0f,-F32_PI,0.0f),vec3d_New(0.0f,F32_PI,0.0f)),
+		(Vec3D){ 0.0f,0.0f,0.0f,1.0f },
+		GJoint_Make(Vec3D_Null(),Vec3D_New(0.0f,-F32_PI,0.0f),Vec3D_New(0.0f,F32_PI,0.0f)),
 		&tris1,(Bone[]){
 			Bone_MakeXX(
-				(vec3d){ 0.0f,0.5f,0.0f,1.0f },
-				GJoint_Make(vec3d_Null(),vec3d_New(-F32_PI025,0.0f,0.0f),vec3d_New(F32_PI05,0.0f,0.0f)),
+				(Vec3D){ 0.0f,0.5f,0.0f,1.0f },
+				GJoint_Make(Vec3D_Null(),Vec3D_New(-F32_PI025,0.0f,0.0f),Vec3D_New(F32_PI05,0.0f,0.0f)),
 				&tris2,(Bone[]){
 					Bone_MakeXX(
-						(vec3d){ 0.0f,2.5f,0.0f,1.0f },
-				        GJoint_Make(vec3d_Null(),vec3d_New(-F32_PI025,0.0f,0.0f),vec3d_New(F32_PI025,0.0f,0.0f)),
+						(Vec3D){ 0.0f,2.5f,0.0f,1.0f },
+				        GJoint_Make(Vec3D_Null(),Vec3D_New(-F32_PI025,0.0f,0.0f),Vec3D_New(F32_PI025,0.0f,0.0f)),
 						&tris3,(Bone[]){
 							Bone_MakeXX(
-								(vec3d){ 0.0f,0.25f,2.25f,1.0f },
-								GJoint_Make(vec3d_Null(),vec3d_New(0.0f,0.0f,-F32_PI05),vec3d_New(0.0f,0.0f,F32_PI05)),
+								(Vec3D){ 0.0f,0.25f,2.25f,1.0f },
+								GJoint_Make(Vec3D_Null(),Vec3D_New(0.0f,0.0f,-F32_PI05),Vec3D_New(0.0f,0.0f,F32_PI05)),
 								&tris4,(Bone[]){
 									Bone_MakeXX(
-										(vec3d){ 0.5f,0.0f,0.25f,1.0f },
-										GJoint_Make(vec3d_Null(),vec3d_New(0.0f,-F32_PI025,0.0f),vec3d_New(0.0f,F32_PI025,0.0f)),
+										(Vec3D){ 0.5f,0.0f,0.25f,1.0f },
+										GJoint_Make(Vec3D_Null(),Vec3D_New(0.0f,-F32_PI025,0.0f),Vec3D_New(0.0f,F32_PI025,0.0f)),
 										&tris5,NULL
 									),
                                     Bone_MakeXX(
-										(vec3d){ -0.5f,0.0f,0.25f,1.0f },
-										GJoint_Make(vec3d_Null(),vec3d_New(0.0f,-F32_PI025,0.0f),vec3d_New(0.0f,F32_PI025,0.0f)),
+										(Vec3D){ -0.5f,0.0f,0.25f,1.0f },
+										GJoint_Make(Vec3D_Null(),Vec3D_New(0.0f,-F32_PI025,0.0f),Vec3D_New(0.0f,F32_PI025,0.0f)),
 										&tris6,NULL
 									),
 									Bone_Null()
@@ -129,7 +128,7 @@ float RoboticArm_Get(RoboticArm* ra,int* s){
     return 0.0f;
 }
 
-void RoboticArm_Render(RoboticArm* ra,Vector* tris,vec3d dir){
+void RoboticArm_Render(RoboticArm* ra,Vector* tris,Vec3D dir){
 	Bone_Render(&ra->b,tris,ra->p,dir);
 }
 void RoboticArm_Free(RoboticArm* ra){
